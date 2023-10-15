@@ -1,0 +1,64 @@
+﻿@using Code_Project_1.Models.ViewModels;
+@model List<ProductDetailViewModel>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <title>Products Table</title>
+</head>
+<body>
+
+    <div class="container">
+        <h2>Product List:</h2>
+        <a asp-route="admin-product-add-page" class="btn btn-success">New Product</a>
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Name</th>
+                    <th>Description</th>
+                    <th>Color</th>
+                    <th>Size</th>
+                    <th>Value</th>
+                    <th>Rating</th>
+                    <th>Discount</th>
+                    <th>OrderNumber</th>
+                    <th>Created Date</th>
+                    <th>Detail URL</th>
+                </tr>
+            </thead>
+            <tbody>
+                @{
+                    int rowCount = 1;
+                }
+                @foreach (var detailViewModel in Model)
+                {
+                    <tr>
+                        <td>@rowCount</td>
+                        <td>@detailViewModel.Name</td>
+                        <td>@detailViewModel.Description</td>
+                        <td>@detailViewModel.Color</td>
+                        <td>@detailViewModel.Size</td>
+                        <td>@detailViewModel.Value</td>
+                        <td>@detailViewModel.Rating</td>
+                        <td>@detailViewModel.Discount</td>
+                        <td>@detailViewModel.OrderNumber</td>
+                        <td>@detailViewModel.CreatedDate</td>
+                        <td><a href="@detailViewModel.URL">@detailViewModel.URL</a></td>
+                        <td>
+                            <a asp-route-id="@detailViewModel.ID" asp-route="admin-product-edit-page" class="btn btn-warning">Edit</a>
+                            <a asp-route-id="@detailViewModel.ID" asp-route="admin-product-delete-redirecter" class="btn btn-danger">Remove</a>
+                        </td>
+                    </tr>
+
+                    rowCount++;
+                }
+                <!-- Add more rows for additional products -->
+            </tbody>
+        </table>
+    </div>
+
+</body>
+</html>
